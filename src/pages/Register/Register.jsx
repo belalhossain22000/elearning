@@ -44,7 +44,7 @@ const Register = () => {
             case 1:
                 return (
                     <>
-                        {/* Step 1: First Name, Last Name, Language */} 
+                        {/* Step 1: First Name, Last Name, Language */}
                         <form onSubmit={nextStep} className='w-full lg:w-[70%] mx-auto mt-5'>
                             <div className='mt-2'>
                                 <label htmlFor="firstName" className="block text-sm font-medium leading-6 text-gray-900">First Name</label>
@@ -81,10 +81,10 @@ const Register = () => {
                             </div>
                             <div>
 
-                            <div className='flex items-center justify-center'>
+                                <div className='flex items-center justify-center'>
 
-                                <button className='btn px-8 mt-5 btn-success' type="submit">Next</button>
-                            </div>
+                                    <button className='btn px-8 mt-5 btn-success' type="submit">Next</button>
+                                </div>
                             </div>
                         </form>
                     </>
