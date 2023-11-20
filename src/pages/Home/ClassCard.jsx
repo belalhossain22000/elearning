@@ -1,15 +1,30 @@
+import { classData } from "../../data/data"
 
 const ClassCard = () => {
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
-      <figure><img src="https://img.freepik.com/free-vector/huge-camera-tiny-people-taking-pictures-photographer-with-camera-photos-landscapes-flat-vector-illustration-photography-occupation-concept-banner-website-design-landing-web-page_74855-23089.jpg?size=626&ext=jpg&ga=GA1.1.862404379.1673466972&semt=ais" alt="Shoes" /></figure>
-      <div className="card-body">
-        <h2 className="card-title text-xl">Photo eEdititn and sharing class</h2>
-        <p>If a dog chews shoes whose shoes does he choose? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur molestias veritatis, quasi labore minus inventore accusamus totam quo repellat vel!</p>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">View Details</button>
-        </div>
-      </div>
+    <div className="overflow-x-auto">
+      <table className="table">
+        <tbody>
+          {/* row 1 */}
+          {
+            classData?.map((item, index) => (<tr key={index}>
+              <td >
+                <div className="flex items-center justify-between gap-10 shadow-xl md:p-5 p-3 rounded-md">
+                  <div className="avatar">
+                    <div className="mask mask-squircle w-20 h-20 md:w-32 md:h-32">
+                      <img className="object-cover" src={item?.image} />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="font-bold text-xl md:text-3xl">{item?.className}</div>
+                  </div>
+                </div>
+              </td>
+            </tr>))
+          }
+
+        </tbody>
+      </table>
     </div>
   )
 }
