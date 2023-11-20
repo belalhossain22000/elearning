@@ -11,11 +11,13 @@ import Home from "../pages/Home/Home";
 import Profile from "../pages/Profile/Profile";
 import PrivetRoute from "./PrivetRoute/PrivetRoute";
 import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
+import Error from "../components/Error/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <PrivetRoute> <Main /></PrivetRoute>,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
@@ -31,21 +33,21 @@ export const router = createBrowserRouter([
       },
       {
         path: '/update-profile',
-        element: <UpdateProfile/>
+        element: <UpdateProfile />
       }
-]
+    ]
   },
-{
-  path: '/first-page',
+  {
+    path: '/first-page',
     element: <FirstPage />
-},
-{
-  path: '/login',
+  },
+  {
+    path: '/login',
     element: <Login />
-},
-{
-  path: '/sign-up',
+  },
+  {
+    path: '/sign-up',
     element: <Register />
-},
+  },
 
 ]);

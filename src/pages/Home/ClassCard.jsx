@@ -4,7 +4,7 @@ const ClassCard = () => {
   return (
     <div className="overflow-x-auto ">
       <table className="table">
-        <tbody>
+        <tbody className="grid md:grid-cols-2 grid-cols-1">
           {/* row 1 */}
           {
             classData?.map((item, index) => (<tr key={index}>
