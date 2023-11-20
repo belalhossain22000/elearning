@@ -6,6 +6,9 @@ const Home = () => {
     return (
         <div className="container mx-auto flex items-center justify-center gap-10 flex-col ">
             {/* classes && details*/}
+            <div>
+                <h1 className="font-semibold text-4xl py-5 ">Our popular classes</h1>
+            </div>
             <div className="flex items-center justify-center gap-5">
                 <ClassCard />
 
