@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Stepper from 'react-stepper-horizontal';
 
 const Register = () => {
@@ -15,11 +15,11 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [referenceNumber, setReferenceNumber] = useState('');
-
-    const handleSubmit = (e) => {
+    const navigate = useNavigate()
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission (you can send the form data to a server or perform validations)
-        console.log({
+
+        const user = {
             firstName,
             lastName,
             language,
@@ -29,7 +29,32 @@ const Register = () => {
             email,
             password,
             referenceNumber
-        });
+        };
+        try {
+            const response = await fetch('http://localhost:3000/create-user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+
+            if (response.ok) {
+                // Registration successful
+                const data = await response.json();
+                console.log(data)
+                navigate("/sign-up-details")
+
+
+            } else {
+                // Registration failed
+                // Handle the error, e.g., display error message to the user
+                console.error('Registration failed');
+            }
+        } catch (error) {
+            // Handle network errors or other exceptions
+            console.error('Error:', error);
+        }
     };
 
     const nextStep = (e) => {

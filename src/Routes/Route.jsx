@@ -27,10 +27,7 @@ export const router = createBrowserRouter([
         path: '/profile',
         element: <Profile />
       },
-      {
-        path: '/sign-up-details',
-        element: <LoginSuccess />
-      },
+
       {
         path: '/update-profile',
         element: <UpdateProfile />
@@ -48,6 +45,10 @@ export const router = createBrowserRouter([
   {
     path: '/sign-up',
     element: <Register />
+  },
+  {
+    path: '/sign-up-details',
+    element: <LoginSuccess />
   },
 
 ]);

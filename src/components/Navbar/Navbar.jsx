@@ -1,7 +1,12 @@
 import { FaBars } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate()
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    navigate("first-page")
+  }
 
   return (
     <div className="navbar bg-base-100 container mx-auto">
@@ -21,7 +26,7 @@ const Navbar = () => {
                 Profile
               </Link>
             </li>
-            <li><Link>Logout</Link></li>
+            <li onClick={handleLogOut}><Link>Logout</Link></li>
           </ul>
         </div>
       </div>

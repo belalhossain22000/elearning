@@ -1,19 +1,39 @@
 import { useState } from 'react';
-import { Link, } from 'react-router-dom';
+import { Link, useNavigate, } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [UniqueId, setUniqueId] = useState('');
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Replace this with your actual authentication logic
-        console.log(`Email: ${email}, Password: ${password},uniqeId ${UniqueId}`);
+        const loginData = { email, password }
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(loginData),
+            });
 
-        // Redirect to the home page after successful login
-
+            const data = await response.json();
+            if (response.ok) {
+                const { token } = data;
+                localStorage.setItem('token', token);// Access the token from the response data
+                console.log('Token:', token);
+                navigate("/")
+                // Store the token in localStorage or a state management tool (e.g., React Context)
+                // localStorage.setItem('token', token);
+            } else {
+                console.error('Login failed:', data.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     return (
