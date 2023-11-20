@@ -5,6 +5,7 @@ const Navbar = () => {
   const navigate = useNavigate()
   const handleLogOut = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('email')
     navigate("first-page")
   }
 

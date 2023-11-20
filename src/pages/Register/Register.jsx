@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Stepper from 'react-stepper-horizontal';
+import { DataContext } from '../../provider/ContextProvider/ContextProvider';
 
 const Register = () => {
     const [step, setStep] = useState(1); // Track the current step
@@ -16,6 +17,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [referenceNumber, setReferenceNumber] = useState('');
     const navigate = useNavigate()
+    const { setRegInfo } = useContext(DataContext)
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -42,6 +44,7 @@ const Register = () => {
             if (response.ok) {
                 // Registration successful
                 const data = await response.json();
+                setRegInfo(data)
                 console.log(data)
                 navigate("/sign-up-details")
 

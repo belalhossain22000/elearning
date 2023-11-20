@@ -23,8 +23,8 @@ const Login = () => {
             const data = await response.json();
             if (response.ok) {
                 const { token } = data;
-                localStorage.setItem('token', token);// Access the token from the response data
-                console.log('Token:', token);
+                localStorage.setItem('token', token);
+                localStorage.setItem('email', email);
                 navigate("/")
                 // Store the token in localStorage or a state management tool (e.g., React Context)
                 // localStorage.setItem('token', token);

@@ -2,6 +2,8 @@ import { Link } from "react-router-dom"
 import Table from "./Table"
 
 const Profile = () => {
+    const userEmail = localStorage.getItem('email')
+    console.log(userEmail)
     return (
         <div className="container mx-auto mt-10">
             <div className="flex gap-6 md:gap-10 items-center justify-center">
