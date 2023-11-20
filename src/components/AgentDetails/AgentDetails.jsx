@@ -2,7 +2,7 @@ import { agentData } from "../../data/data"
 
 const AgentDetails = () => {
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto shadow-lg">
             <table className="table">
                 {/* head */}
                 <thead>

@@ -1,7 +1,7 @@
 
 const ClassTime = () => {
     return (
-        <div> {/* table */}
+        <div className="shadow-lg"> {/* table */}
             <div className="overflow-x-auto my-10">
                 <table className="table table-zebra">
                     {/* head */}

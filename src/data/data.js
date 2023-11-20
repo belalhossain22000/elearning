@@ -30,9 +30,4 @@ export const agentData = [
   { name: "Asif Sharker", district: "Joypurhat", work: "Student" },
   { name: "Kawsar Chowdhury", district: "Chattagram", work: "Student" },
   { name: "Shah-Alom Khan", district: "Jamalpur", work: "Student" },
-  { name: "Shakil Khan", district: "QRS", work: "Student" },
-  { name: "Daniel", district: "NOP", work: "Student" },
-  { name: "Sophia", district: "MNO", work: "Student" },
-  { name: "Liam", district: "EFG", work: "Student" },
-  // Add more objects as needed
 ];

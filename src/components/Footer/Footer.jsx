@@ -5,7 +5,7 @@ const Footer = () => {
         <footer className="container mx-auto my-10 bg-slate-700 text-white py-5 px-3">
 
             < h1 className="text-3xl font-semibold text-center" > Owner Details</h1 >
-            <div className="flex items-center gap-5">
+            <div className="flex items-center justify-center gap-5">
                 <img className="w-20 h-auto object-cover" src="/Logo.svg" alt="" />
                 <h2 className="text-xl font-bold">Digital Earning Platform BD</h2>
             </div>

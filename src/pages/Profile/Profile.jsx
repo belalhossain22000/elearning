@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Table from "./Table"
 
 const Profile = () => {
@@ -18,7 +19,10 @@ const Profile = () => {
                 <h3 className="text-3xl font-semibold text-center">About</h3>
                 <Table></Table>
             </div>
-        </div>
+            <div className="flex items-center justify-center mt-5">
+                <Link className="btn btn-primary" to="/update-profile">Update Profile</Link>
+            </div>
+        </div >
     )
 }
 

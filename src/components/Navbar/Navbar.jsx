@@ -21,9 +21,6 @@ const Navbar = () => {
                 Profile
               </Link>
             </li>
-            <li>
-              <Link>Login</Link>
-            </li>
             <li><Link>Logout</Link></li>
           </ul>
         </div>

@@ -12,7 +12,7 @@ const Home = () => {
             </div>
 
             {/* class tie and table */}
-            <div className="flex items-center justify-center flex-col mt-12 ">
+            <div className="flex items-center justify-center flex-col my-10 ">
                 <div>
                     <h2 className="text-3xl text-center font-bold">Meeting time and table</h2>
                     <ClassTime />

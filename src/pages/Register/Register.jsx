@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Stepper from 'react-stepper-horizontal';
 
 const Register = () => {
@@ -31,11 +32,13 @@ const Register = () => {
         });
     };
 
-    const nextStep = () => {
+    const nextStep = (e) => {
+        e.preventDefault();
         setStep(step + 1);
     };
 
-    const prevStep = () => {
+    const prevStep = (e) => {
+        e.preventDefault();
         setStep(step - 1);
     };
 
@@ -87,6 +90,20 @@ const Register = () => {
                                 </div>
                             </div>
                         </form>
+                        <p className="mt-10 text-center text-sm text-gray-500">
+                            All ready have an account ?
+                            <Link to="/login" className="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                                Login
+                            </Link>
+                        </p>
+
+                        <p className="mt-5 text-center text-sm text-gray-500">
+                            Go to home?
+                            <Link to="/first-page" className="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                                Home
+                            </Link>
+
+                        </p>
                     </>
                 );
             case 2:
@@ -137,6 +154,20 @@ const Register = () => {
 
                             </div>
                         </form>
+                        <p className="mt-10 text-center text-sm text-gray-500">
+                            All ready have an account ?
+                            <Link to="/login" className="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                                Login
+                            </Link>
+                        </p>
+
+                        <p className="mt-5 text-center text-sm text-gray-500">
+                            Go to home?
+                            <Link to="/first-page" className="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                                Home
+                            </Link>
+
+                        </p>
                     </>
                 );
             case 3:
@@ -188,6 +219,20 @@ const Register = () => {
                                 </div>
                             </div>
                         </form>
+                        <p className="mt-10 text-center text-sm text-gray-500">
+                            All ready have an account ?
+                            <Link to="/login" className="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                                Login
+                            </Link>
+                        </p>
+
+                        <p className="mt-5 text-center text-sm text-gray-500">
+                            Go to home?
+                            <Link to="/first-page" className="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                                Home
+                            </Link>
+
+                        </p>
                     </>
                 );
             default:
@@ -198,6 +243,7 @@ const Register = () => {
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+                <h1 className='text-4xl font-semibold text-center my-12'>Please Register Here</h1>
                 <Stepper steps={[{ title: 'Step 1' }, { title: 'Step 2' }, { title: 'Step 3' }]} activeStep={step - 1} />
                 {renderStep()}
 
