@@ -10,7 +10,7 @@ const ContextProvider = ({ children }) => {
 
     //get single user
     useEffect(() => {
-        fetch(`http://localhost:3000/user/${userEmail}`)
+        fetch(`https://elearning-server-852w.vercel.app/user/${userEmail}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok.');

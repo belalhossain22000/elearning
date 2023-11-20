@@ -33,7 +33,7 @@ const Register = () => {
             referenceNumber
         };
         try {
-            const response = await fetch('http://localhost:3000/create-user', {
+            const response = await fetch('https://elearning-server-852w.vercel.app/create-user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
