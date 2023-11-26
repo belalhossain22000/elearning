@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate, } from 'react-router-dom';
 import { useLoginUserMutation } from '../../redux/api/usersApi';
-import Loading from '../../components/Loading/Loading';
+import BtnLoading from '../../components/Loading/BtnLoading';
 
 
 const Login = () => {
@@ -106,9 +106,9 @@ const Login = () => {
                         {/* Submit button */}
                         <button
                             type="submit"
-                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            className="btn btn-primary w-full"
                         >
-                            {isLoading ? "Loading" : <Loading />}
+                            {isLoading ? <BtnLoading /> : "LogIn"}
 
                         </button>
                     </div>

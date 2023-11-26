@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setEmailr } from '../../redux/reducer/userEmailSlice';
 // import { useDispatch, useSelector } from 'react-redux';
 import { usePostUserMutation } from '../../redux/api/usersApi';
-import Loading from '../../components/Loading/Loading';
+import BtnLoading from '../../components/Loading/BtnLoading';
 // import { setError, clearError } from '../../redux/reducer/errSlice';
 const Register = () => {
     const [step, setStep] = useState(1); // Track the current step
@@ -244,7 +244,7 @@ const Register = () => {
                                             Previous
                                         </button>
                                     )}
-                                    <button className='btn btn-success px-8 mt-5 text-white' type="submit">{isLoading ? "Loading..." : <Loading />}</button>
+                                    <button className='btn btn-success px-8 mt-5 text-white' type="submit">{isLoading ? <BtnLoading /> : "SignUp"}</button>
                                 </div>
                             </div>
                         </form>

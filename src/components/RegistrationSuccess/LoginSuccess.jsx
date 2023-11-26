@@ -2,13 +2,14 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useGetUserByEmailQuery } from "../../redux/api/usersApi";
 import { useSelector } from "react-redux";
+import Loading from "../Loading/Loading";
 const LoginSuccess = () => {
     const userEmail = useSelector((state) => state.userEmail.email);
     const { data, isLoading } = useGetUserByEmailQuery(userEmail)
     // console.log(data.password)
 
     if (isLoading) {
-        return <h1>Loading...</h1>
+        return <Loading />
     }
     return (
         <div className="container mx-auto flex items-center flex-col justify-center gap-5  h-[100vh]">
