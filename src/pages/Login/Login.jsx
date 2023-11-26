@@ -8,7 +8,7 @@ const Login = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [UniqueId, setUniqueId] = useState('');
+    const [uniqueId, setUniqueId] = useState('');
     const [err, setErr] = useState('');
     const [loginUser, { isLoading, data, }] = useLoginUserMutation()
     console.log(data?.email, data?.token)
@@ -17,9 +17,9 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErr(" ")
-        const parseUId = parseInt(UniqueId)
+
         try {
-            const loginData = { email, password, parseUId }
+            const loginData = { email, password, uniqueId }
             const response = await loginUser(loginData)
 
             if (data) {
