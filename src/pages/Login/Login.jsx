@@ -1,43 +1,43 @@
 import { useState } from 'react';
 import { Link, useNavigate, } from 'react-router-dom';
+import { useLoginUserMutation } from '../../redux/api/usersApi';
+import Loading from '../../components/Loading/Loading';
+
 
 const Login = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [UniqueId, setUniqueId] = useState('');
+    const [loginUser, { isLoading, data, }] = useLoginUserMutation()
+    console.log(data?.email, data?.token)
 
-
+    //handle login button
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const loginData = { email, password }
+        const parseUId = parseInt(UniqueId)
         try {
-            const response = await fetch('https://elearning-server-852w.vercel.app/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(loginData),
-            });
+            const loginData = { email, password, parseUId }
+            await loginUser(loginData)
 
-            const data = await response.json();
-            if (response.ok) {
-                const { token } = data;
-                localStorage.setItem('token', token);
-                localStorage.setItem('email', email);
+            if (data) {
+                localStorage.setItem('email', data?.email);
+                localStorage.setItem('token', data?.token);
                 navigate("/")
-                // Store the token in localStorage or a state management tool (e.g., React Context)
-                // localStorage.setItem('token', token);
-            } else {
-                console.error('Login failed:', data.error);
+
             }
+
+
         } catch (error) {
-            console.error('Error:', error);
+            console.log(error)
         }
+
     };
+
 
     return (
         <>
+
             <div className="flex min-h-full flex-1 flex-col container mx-auto w-full lg:w-[60%] justify-center px-6 py-12 lg:px-8">
                 <h1 className='text-4xl font-semibold text-center my-12'>Please login here</h1>
                 {/* ... (existing UI code) */}
@@ -108,7 +108,8 @@ const Login = () => {
                             type="submit"
                             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
-                            Sign in
+                            {isLoading ? "Loading" : <Loading />}
+
                         </button>
                     </div>
                 </form>

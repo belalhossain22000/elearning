@@ -1,8 +1,12 @@
-import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate, } from 'react-router-dom';
 import Stepper from 'react-stepper-horizontal';
-import { DataContext } from '../../provider/ContextProvider/ContextProvider';
-
+import { useDispatch } from 'react-redux';
+import { setEmailr } from '../../redux/reducer/userEmailSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+import { usePostUserMutation } from '../../redux/api/usersApi';
+import Loading from '../../components/Loading/Loading';
+// import { setError, clearError } from '../../redux/reducer/errSlice';
 const Register = () => {
     const [step, setStep] = useState(1); // Track the current step
 
@@ -16,11 +20,21 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [referenceNumber, setReferenceNumber] = useState('');
+    const [postUser, { isLoading, }] = usePostUserMutation()
+    const dispatch = useDispatch();
+    // const reduxErr = useSelector((state) => state.error.error);
     const navigate = useNavigate()
-    const { setRegInfo } = useContext(DataContext)
+
+    //unique id generator generator
+    function generateRandom4DigitNumber() {
+        // Generate a random number between 1000 and 9999 (inclusive)
+        return Math.floor(1000 + Math.random() * 9000);
+    }
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const uniqueId = generateRandom4DigitNumber();
         const user = {
             firstName,
             lastName,
@@ -30,33 +44,19 @@ const Register = () => {
             phoneNumber,
             email,
             password,
-            referenceNumber
+            referenceNumber,
+            uniqueId
         };
         try {
-            const response = await fetch('https://elearning-server-852w.vercel.app/create-user', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(user)
-            });
 
-            if (response.ok) {
-                // Registration successful
-                const data = await response.json();
-                setRegInfo(data)
-                console.log(data)
-                navigate("/sign-up-details")
-
-
-            } else {
-                // Registration failed
-                // Handle the error, e.g., display error message to the user
-                console.error('Registration failed');
-            }
+            dispatch(setEmailr(email));
+            await postUser(user)
+            alert('Registration Success.Do not reload the window')
+            navigate("/sign-up-details")
         } catch (error) {
-            // Handle network errors or other exceptions
-            console.error('Error:', error);
+            alert('Registration Failed')
+            // dispatch(setError(error.message));
+            console.log(error)
         }
     };
 
@@ -182,6 +182,7 @@ const Register = () => {
 
                             </div>
                         </form>
+                        <p></p>
                         <p className="mt-10 text-center text-sm text-gray-500">
                             All ready have an account ?
                             <Link to="/login" className="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
@@ -243,10 +244,11 @@ const Register = () => {
                                             Previous
                                         </button>
                                     )}
-                                    <button className='btn btn-success px-8 mt-5 text-white' type="submit">Sign Up</button>
+                                    <button className='btn btn-success px-8 mt-5 text-white' type="submit">{isLoading ? "Loading..." : <Loading />}</button>
                                 </div>
                             </div>
                         </form>
+                        {/* <p>{error?.message}</p> */}
                         <p className="mt-10 text-center text-sm text-gray-500">
                             All ready have an account ?
                             <Link to="/login" className="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
@@ -261,6 +263,9 @@ const Register = () => {
                             </Link>
 
                         </p>
+
+
+
                     </>
                 );
             default:

@@ -1,7 +1,8 @@
 import { Navigate } from "react-router-dom";
 
 const PrivetRoute = ({ children }) => {
-    const user = false
+    // const user = true
+    // eslint-disable-next-line no-unused-vars
     const token = localStorage.getItem('token');
     if (token) {
         return children;

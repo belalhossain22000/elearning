@@ -1,10 +1,8 @@
-import { useContext } from "react"
-import { DataContext } from "../../provider/ContextProvider/ContextProvider"
 
-const Table = () => {
-    const { user } = useContext(DataContext)
-    const { country, phoneNumber, whatsAppNumber, language, email, firstName, lastName } = user || {}
-    console.log(user)
+// eslint-disable-next-line no-unused-vars
+const Table = ({ data, }) => {
+    const { country, phoneNumber, whatsAppNumber, language, email, firstName, lastName } = data || {}
+
     return (
         <div className="mt-4 flex items-center justify-center">
             <div className="overflow-x-auto">

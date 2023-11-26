@@ -3,6 +3,7 @@ import ClassTime from "../../components/ClassTime/ClassTime"
 import ClassCard from "./ClassCard"
 
 const Home = () => {
+
     return (
         <div className="container mx-auto flex items-center justify-center gap-10 flex-col ">
             {/* classes && details*/}
@@ -22,6 +23,7 @@ const Home = () => {
                         <ClassTime />
                     </div>
                 </div>
+                {/* gent time details */}
                 <div className="flex items-center justify-center flex-col">
                     <h2 className="text-3xl font-bold text-center pb-5">Agent Details</h2>
                     <div>
