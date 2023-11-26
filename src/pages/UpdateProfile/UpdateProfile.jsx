@@ -1,18 +1,32 @@
-import  { useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useGetUserByEmailQuery, useUpdateUserByEmailMutation } from '../../redux/api/usersApi';
+import Loading from '../../components/Loading/Loading';
+import BtnLoading from '../../components/Loading/BtnLoading';
 
 const UpdateProfile = () => {
+  const userEmail = localStorage.getItem('email');
+  const { data, isLoading } = useGetUserByEmailQuery(userEmail)
+  const { firstName, lastName, language, country, whatsAppNumber, phoneNumber, email, referenceNumber, City, Division, FacebookLink, TrainerID, gender, dateOfBirth, courseFee } = data || {}
+  const [updateUserByEmail, { isLoading: updateLoading }] = useUpdateUserByEmailMutation()
+
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    bio: '',
-    profileImage: '', // New field: Profile Image URL
-    emial: '', // New field: WhatsApp Number
-    division: '', // New field: Division
-    city: '', // New field: City
-    facebookLink: '', // New field: Facebook Link
-    trainerId: '', // New field: Trainer ID
-    // Add more fields as needed
+    firstName,
+    lastName,
+    language,
+    country,
+    whatsAppNumber,
+    phoneNumber,
+    email,
+    referenceNumber,
+    City,
+    Division,
+    FacebookLink,
+    TrainerID,
+    gender,
+    dateOfBirth,
+    courseFee,
+
   });
 
   const handleChange = (e) => {
@@ -22,91 +36,190 @@ const UpdateProfile = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // You can implement an API call to update the user's profile with the formData
+  const handleImageChange = (e) => {
+    setFormData({
+      ...formData,
+      profileImage: e.target.files[0],
+    });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const updatedData = formData
+      const mutationResult = await updateUserByEmail({ updatedData, email })
+      console.log(!mutationResult.data.error)
+      if (mutationResult) {
+
+        alert("User Updated Successfully")
+
+      }
+    } catch (error) {
+      alert("User not Updated")
+    }
+
+  };
+
+  if (isLoading) {
+    return <Loading />
+  }
   return (
     <div className="max-w-md mx-auto mt-10 p-6 border rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-6">Update Profile</h2>
       <form onSubmit={handleSubmit}>
-      <div className="mb-4">
+        <div className="mb-4">
           <label htmlFor="profileImage" className="block text-sm font-medium text-gray-700 mb-1">
             Profile Image
           </label>
           <input
-            type="file" // Use type file for image input
+            type="file"
             id="profileImage"
             name="profileImage"
-            onChange={handleChange}
-            accept="image/*" // Accept only image files
+            onChange={handleImageChange}
+            accept="image/*"
             className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
-      <div className="mb-4">
+        <div className="mb-4">
           <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
-            Full Name
+            First Name
           </label>
           <input
             type="text"
-            id="fullName"
-            name="fullName"
-            value={formData.fullName}
+            id="firstName"
+            name="firstName"
+            defaultValue={firstName}
+            onChange={handleChange}
+            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+            Last Name
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            defaultValue={lastName}
             onChange={handleChange}
             className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
           <label htmlFor="whatsAppNo" className="block text-sm font-medium text-gray-700 mb-1">
-            Email
+            Language
           </label>
           <input
             type="text"
-            id="email"
-            name="email"
-            value={formData.email}
+            id="language"
+            name="language"
+            defaultValue={language}
             onChange={handleChange}
             className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
           <label htmlFor="division" className="block text-sm font-medium text-gray-700 mb-1">
-            Division
+            Country
           </label>
           <input
             type="text"
-            id="division"
-            name="division"
-            value={formData.division}
+            id="country"
+            name="country"
+            defaultValue={country}
             onChange={handleChange}
             className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
           <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
-            City
+            whatsAppNumber
           </label>
           <input
-            type="text"
-            id="city"
-            name="city"
-            value={formData.city}
+            type="number"
+            id="whatsAppNumber"
+            name="whatsAppNumber"
+            defaultValue={whatsAppNumber}
             onChange={handleChange}
             className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
           <label htmlFor="facebookLink" className="block text-sm font-medium text-gray-700 mb-1">
+            PhoneNumber
+          </label>
+          <input
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+            defaultValue={phoneNumber}
+            onChange={handleChange}
+            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="trainerId" className="block text-sm font-medium text-gray-700 mb-1">
+            Email
+          </label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            value={email}
+            readOnly
+            onChange={handleChange}
+            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="trainerId" className="block text-sm font-medium text-gray-700 mb-1">
+            Reference Number
+          </label>
+          <input
+            type="text"
+            id="referenceNumber"
+            name="referenceNumber"
+            defaultValue={referenceNumber}
+            onChange={handleChange}
+            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="trainerId" className="block text-sm font-medium text-gray-700 mb-1">
+            City
+          </label>
+          <input
+            type="text"
+            id="City"
+            name="City"
+            defaultValue={City}
+            onChange={handleChange}
+            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="trainerId" className="block text-sm font-medium text-gray-700 mb-1">
+            Division
+          </label>
+          <input
+            type="text"
+            id="Division"
+            name="Division"
+            defaultValue={Division}
+            onChange={handleChange}
+            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="trainerId" className="block text-sm font-medium text-gray-700 mb-1">
             Facebook Link
           </label>
           <input
             type="text"
-            id="facebookLink"
-            name="facebookLink"
-            value={formData.facebookLink}
+            id="FacebookLink"
+            name="FacebookLink"
+            defaultValue={FacebookLink}
             onChange={handleChange}
             className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
           />
@@ -117,22 +230,64 @@ const UpdateProfile = () => {
           </label>
           <input
             type="text"
-            id="trainerId"
-            name="trainerId"
-            value={formData.trainerId}
+            id="TrainerID"
+            name="TrainerID"
+            value={TrainerID}
             onChange={handleChange}
             className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
+        <div className="mb-4">
+          <label htmlFor="trainerId" className="block text-sm font-medium text-gray-700 mb-1">
+            Date Of Birth
+          </label>
+          <input
+            type="text"
+            id="dateOfBirth"
+            name="dateOfBirth"
+            value={dateOfBirth}
+            onChange={handleChange}
+            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="trainerId" className="block text-sm font-medium text-gray-700 mb-1">
+            gender
+          </label>
+          <input
+            type="text"
+            id="gender"
+            name="gender"
+            defaultValue={gender}
+            onChange={handleChange}
+            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="trainerId" className="block text-sm font-medium text-gray-700 mb-1">
+            Course Fee
+          </label>
+          <input
+            defaultValue={courseFee}
+            type="text"
+            id="courseFee"
+            name="courseFee"
+            onChange={handleChange}
+            className="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+
         {/* Other fields */}
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+          className="btn btn-primary w-[100%]"
         >
-          Update
+          {updateLoading ? <BtnLoading /> : "Update"}
+
         </button>
       </form>
-    </div>
+      <Link className='btn btn-primary mt-5 w-full' to="/profile">Back To Profile</Link>
+    </div >
   );
 };
 

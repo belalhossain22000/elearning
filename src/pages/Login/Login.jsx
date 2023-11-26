@@ -9,6 +9,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [UniqueId, setUniqueId] = useState('');
+    const [err, setErr] = useState('');
     const [loginUser, { isLoading, data, }] = useLoginUserMutation()
     console.log(data?.email, data?.token)
 
@@ -18,12 +19,18 @@ const Login = () => {
         const parseUId = parseInt(UniqueId)
         try {
             const loginData = { email, password, parseUId }
-            await loginUser(loginData)
+            const response = await loginUser(loginData)
 
-            if (data) {
+            if (response?.data) {
                 localStorage.setItem('email', data?.email);
                 localStorage.setItem('token', data?.token);
+                alert("Login success")
                 navigate("/")
+
+            }
+            if (response?.error?.data?.error) {
+                alert("Login failed")
+                setErr(response.error.data.error)
 
             }
 
@@ -113,8 +120,8 @@ const Login = () => {
                         </button>
                     </div>
                 </form>
-
-                <p className="mt-10 text-center text-sm text-gray-500">
+                <p className='text-red-600 font-semibold text-center mt-5'>{err}</p>
+                <p className="mt-5 text-center text-sm text-gray-500">
                     Don`t have an account?
                     <Link to="/sign-up" className="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                         Register

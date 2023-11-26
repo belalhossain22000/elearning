@@ -31,24 +31,24 @@ export const usersApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
-    // // update user
-    // updateUserByEmail: builder.mutation({
-    //   query: ({ data, email }) => ({
-    //     url: `/users/${email}`,
-    //     method: "PUT",
-    //     body: data,
-    //   }),
-    //   invalidatesTags: ["users"],
-    // }),
-    // update user
-    updateUserAddressByEmail: builder.mutation({
-      query: ({ address, email }) => ({
-        url: `/users/${email}/updateAddress`,
+    // update user by email
+    updateUserByEmail: builder.mutation({
+      query: ({ updatedData, email }) => ({
+        url: `/users/${email}`,
         method: "PUT",
-        body: address,
+        body: updatedData,
       }),
       invalidatesTags: ["users"],
     }),
+    // // update user
+    // updateUserAddressByEmail: builder.mutation({
+    //   query: ({ address, email }) => ({
+    //     url: `/users/${email}/updateAddress`,
+    //     method: "PUT",
+    //     body: address,
+    //   }),
+    //   invalidatesTags: ["users"],
+    // }),
     // delete users
     deleteUser: builder.mutation({
       query: (id) => ({
@@ -65,6 +65,6 @@ export const {
   useGetUsersQuery,
   useGetUserByEmailQuery,
   useDeleteUserMutation,
-  useUpdateUserAddressByEmailMutation,
   useLoginUserMutation,
+  useUpdateUserByEmailMutation,
 } = usersApi;

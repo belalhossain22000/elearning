@@ -1,7 +1,7 @@
 
 // eslint-disable-next-line no-unused-vars
 const Table = ({ data, }) => {
-    const { country, phoneNumber, whatsAppNumber, language, email, firstName, lastName } = data || {}
+    const { country, phoneNumber, whatsAppNumber, language, email, firstName, lastName, FacebookLink, TrainerID, Division, City, dateOfBirth, gender, courseFee, role } = data || {}
 
     return (
         <div className="mt-4 flex items-center justify-center">
@@ -12,7 +12,7 @@ const Table = ({ data, }) => {
                         <tr>
 
                             <td className=" text-base">Profile Type</td>
-                            <td className=" text-base">Student</td>
+                            <td className=" text-base">{role}</td>
 
                         </tr>
                         <tr>
@@ -32,13 +32,13 @@ const Table = ({ data, }) => {
                         <tr>
 
                             <td className=" text-base">Date of Birth</td>
-                            <td className=" text-base"></td>
+                            <td className=" text-base">{dateOfBirth}</td>
 
                         </tr>
                         <tr>
 
                             <td className=" text-base">Gender</td>
-                            <td className=" text-base"></td>
+                            <td className=" text-base">{gender}</td>
 
                         </tr>
                         <tr>
@@ -50,13 +50,13 @@ const Table = ({ data, }) => {
                         <tr>
 
                             <td className=" text-base">Division</td>
-                            <td className=" text-base"></td>
+                            <td className=" text-base">{Division}</td>
 
                         </tr>
                         <tr>
 
                             <td className=" text-base">City</td>
-                            <td className=" text-base"></td>
+                            <td className=" text-base">{City}</td>
 
                         </tr>
                         <tr>
@@ -74,19 +74,25 @@ const Table = ({ data, }) => {
                         <tr>
 
                             <td className=" text-base">Facebook</td>
-                            <td className=" text-base"></td>
+                            <td className=" text-base">{FacebookLink}</td>
 
                         </tr>
                         <tr>
 
                             <td className=" text-base">Course Fee</td>
-                            <td className=" text-base"></td>
+                            <td className=" text-base">{courseFee}</td>
 
                         </tr>
                         <tr>
 
                             <td className=" text-base">WhatsApp</td>
                             <td className=" text-base">{whatsAppNumber}</td>
+
+                        </tr>
+                        <tr>
+
+                            <td className=" text-base">TrainerID</td>
+                            <td className=" text-base">{TrainerID}</td>
 
                         </tr>
                     </tbody>

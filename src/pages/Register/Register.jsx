@@ -20,6 +20,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [referenceNumber, setReferenceNumber] = useState('');
+    const [err, setErr] = useState('');
     const [postUser, { isLoading, }] = usePostUserMutation()
     const dispatch = useDispatch();
     // const reduxErr = useSelector((state) => state.error.error);
@@ -50,7 +51,13 @@ const Register = () => {
         try {
 
             dispatch(setEmailr(email));
-            await postUser(user)
+            const regResponse = await postUser(user)
+            console.log(regResponse?.error?.data)
+            if (regResponse?.error) {
+                setErr('Registration Failed or user already exist')
+                alert('Registration Failed')
+                return
+            }
             alert('Registration Success.Do not reload the window')
             navigate("/sign-up-details")
         } catch (error) {
@@ -248,8 +255,8 @@ const Register = () => {
                                 </div>
                             </div>
                         </form>
-                        {/* <p>{error?.message}</p> */}
-                        <p className="mt-10 text-center text-sm text-gray-500">
+                        <p className='text-red-600 text-center mt-5'>{err}</p>
+                        <p className="mt-5 text-center text-sm text-gray-500">
                             All ready have an account ?
                             <Link to="/login" className="cursor-pointer font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                                 Login

@@ -29,7 +29,7 @@ const Profile = () => {
                 <Table data={data} />
             </div>
             <div className="flex items-center justify-center mt-5">
-                <Link className="btn btn-primary" to="/update-profile">Update Profile</Link>
+                <Link className="btn btn-primary " to="/update-profile">Update Profile</Link>
             </div>
         </div >
     )
