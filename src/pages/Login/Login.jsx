@@ -16,12 +16,13 @@ const Login = () => {
     //handle login button
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErr(" ")
         const parseUId = parseInt(UniqueId)
         try {
             const loginData = { email, password, parseUId }
             const response = await loginUser(loginData)
 
-            if (response?.data) {
+            if (data) {
                 localStorage.setItem('email', data?.email);
                 localStorage.setItem('token', data?.token);
                 alert("Login success")

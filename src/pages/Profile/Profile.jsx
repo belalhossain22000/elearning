@@ -9,8 +9,9 @@ const Profile = () => {
     if (isLoading) {
         return <Loading />
     }
+    console.log(data)
     // console.log(data)
-    const { firstName, lastName, uniqueId } = data
+    const { firstName, lastName, uniqueId } = data || {}
     return (
         <div className="container mx-auto mt-10">
             <div className="flex gap-6 md:gap-10 items-center justify-center">
