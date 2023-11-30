@@ -1,14 +1,22 @@
 import { FaBars } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { useGetUserByEmailQuery } from "../../redux/api/usersApi";
+import Loading from "../Loading/Loading";
 
 const Navbar = () => {
+
   const navigate = useNavigate()
   const handleLogOut = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('email')
     navigate("first-page")
   }
+  const emial = localStorage.getItem('email')
 
+  const { data, isLoading } = useGetUserByEmailQuery(emial)
+  if (isLoading) {
+    return <Loading />
+  }
   return (
     <div className="navbar bg-base-100 container mx-auto">
       <Link to="/" className="flex-1">
@@ -27,7 +35,15 @@ const Navbar = () => {
                 Profile
               </Link>
             </li>
-            <li onClick={handleLogOut}><Link>Logout</Link></li>
+            {data.role === 'Admin' && <li>
+              <Link to='/dashboard' className="justify-between">
+                Dashboard
+              </Link>
+            </li>}
+
+            <li onClick={handleLogOut}>
+              <Link>Logout</Link>
+            </li>
           </ul>
         </div>
       </div>

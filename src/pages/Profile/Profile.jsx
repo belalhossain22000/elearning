@@ -9,7 +9,7 @@ const Profile = () => {
     if (isLoading) {
         return <Loading />
     }
-    console.log(data)
+
     // console.log(data)
     const { firstName, lastName, uniqueId } = data || {}
     return (

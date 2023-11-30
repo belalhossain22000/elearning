@@ -34,6 +34,7 @@ const Register = () => {
 
 
     const handleSubmit = async (e) => {
+        // const role = 'student'
         e.preventDefault();
         const uniqueId = generateRandom4DigitNumber();
         const user = {
@@ -46,7 +47,9 @@ const Register = () => {
             email,
             password,
             referenceNumber,
-            uniqueId
+            uniqueId,
+            role: "Student"
+
         };
         try {
 
