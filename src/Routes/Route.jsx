@@ -12,8 +12,8 @@ import Profile from "../pages/Profile/Profile";
 import PrivetRoute from "./PrivetRoute/PrivetRoute";
 import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import Error from "../components/Error/Error";
-import Dashboard from "../pages/Dashboard/Dashboard";
-import AdminPrivetRoute from "./PrivetRoute/AdminPrivetRoute";
+// import Dashboard from "../pages/Dashboard/Dashboard";
+// import AdminPrivetRoute from "./PrivetRoute/AdminPrivetRoute";
 
 export const router = createBrowserRouter([
   {
@@ -34,10 +34,10 @@ export const router = createBrowserRouter([
         path: '/update-profile',
         element: <UpdateProfile />
       },
-      {
-        path: '/dashboard',
-        element: <AdminPrivetRoute> <Dashboard /> </AdminPrivetRoute>
-      },
+      // {
+      //   path: '/dashboard',
+      //   element: <AdminPrivetRoute> <Dashboard /> </AdminPrivetRoute>
+      // },
     ]
   },
   {
