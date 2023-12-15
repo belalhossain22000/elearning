@@ -22,6 +22,7 @@ export const usersApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
+
     // post user
     loginUser: builder.mutation({
       query: (data) => ({
@@ -31,6 +32,7 @@ export const usersApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
+
     // update user by email
     updateUserByEmail: builder.mutation({
       query: ({ updatedData, email }) => ({
@@ -40,16 +42,8 @@ export const usersApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
-    // // update user
-    // updateUserAddressByEmail: builder.mutation({
-    //   query: ({ address, email }) => ({
-    //     url: `/users/${email}/updateAddress`,
-    //     method: "PUT",
-    //     body: address,
-    //   }),
-    //   invalidatesTags: ["users"],
-    // }),
-    // delete users
+
+    //delete user
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `/deleteUser/${id}`,

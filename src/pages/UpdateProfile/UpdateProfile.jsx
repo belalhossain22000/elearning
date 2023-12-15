@@ -48,11 +48,9 @@ const UpdateProfile = () => {
     try {
       const updatedData = formData
       const mutationResult = await updateUserByEmail({ updatedData, email })
-      console.log(!mutationResult.data.error)
+
       if (mutationResult) {
-
         alert("User Updated Successfully")
-
       }
     } catch (error) {
       alert("User not Updated")

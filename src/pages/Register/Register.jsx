@@ -55,7 +55,7 @@ const Register = () => {
 
             dispatch(setEmailr(email));
             const regResponse = await postUser(user)
-            console.log(regResponse?.error?.data)
+
             if (regResponse?.error) {
                 setErr('Registration Failed or user already exist')
                 alert('Registration Failed')

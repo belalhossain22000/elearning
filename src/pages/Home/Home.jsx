@@ -1,3 +1,4 @@
+import AddClass from "../../components/AddRemoveClass/AddClass"
 import AgentDetails from "../../components/AgentDetails/AgentDetails"
 import ClassTime from "../../components/ClassTime/ClassTime"
 import ClassCard from "./ClassCard"
@@ -5,10 +6,10 @@ import ClassCard from "./ClassCard"
 const Home = () => {
 
     return (
-        <div className="container mx-auto flex items-center justify-center gap-10 flex-col ">
+        <div className="container mx-auto fle items-center justify-center gap-10 flex-col ">
             {/* classes && details*/}
             <div>
-                <h1 className="font-semibold text-4xl py-5 ">Our popular classes</h1>
+                <h1 className="font-semibold text-3xl md:text-6xl py-5 text-center">Our popular classes</h1>
             </div>
             <div className="flex items-center justify-center gap-5">
                 <ClassCard />
@@ -31,7 +32,9 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-
+            <div>
+                <AddClass />
+            </div>
 
 
 

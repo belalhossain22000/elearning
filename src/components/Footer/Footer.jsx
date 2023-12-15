@@ -2,25 +2,32 @@
 
 const Footer = () => {
     return (
-        <footer className="container mx-auto my-10 bg-slate-700 text-white py-5 px-3">
+        <footer className="footer p-10 bg-base-200 text-base-content container mx-auto mt-10">
+            <aside>
+                <img className="w-[140px]" src="/Logo.svg" alt="" />
 
-            < h1 className="text-3xl font-semibold text-center" > Owner Details</h1 >
-            <div className="flex items-center justify-center gap-5">
-                <img className="w-20 h-auto object-cover" src="/Logo.svg" alt="" />
-                <h2 className="text-xl font-bold">Digital Earning Platform BD</h2>
-            </div>
-            <div className="text-center space-y-3">
-                <h1 className="text-xl font-semibold">Owner</h1>
-                <h1 className="font-semibold text-2xl">Ajijul Islam <span className="text-sm font-normal">(Lalmonirhat Govt Collage)</span></h1>
-                <h2 className="font-semibold ">WhatsApp: 01313567558</h2>
-                <h2 className="font-semibold ">ContactNo: 096114188480</h2>
-                <h2 className="font-normal text-sm ">* DEP,Dhaka,Bangladesh</h2>
-            </div>
-            <div className="footer footer-center mt-5 p-2 bg-base-300 text-base-content">
-                <aside>
-                    <p>Copyright © 2023 - All right reserved by Digital Earning Platform BD</p>
-                </aside>
-            </div>
+                <p>Digital Earning Platform BD<br />Providing reliable tech since 2023</p>
+            </aside>
+            <nav>
+                <header className="footer-title">Services</header>
+                <a className="link link-hover">Branding</a>
+                <a className="link link-hover">Design</a>
+                <a className="link link-hover">Marketing</a>
+                <a className="link link-hover">Advertisement</a>
+            </nav>
+            <nav>
+                <header className="footer-title">Company</header>
+                <a className="link link-hover">About us</a>
+                <a className="link link-hover">Contact</a>
+                <a className="link link-hover">Jobs</a>
+                <a className="link link-hover">Press kit</a>
+            </nav>
+            <nav>
+                <header className="footer-title">Legal</header>
+                <a className="link link-hover">Terms of use</a>
+                <a className="link link-hover">Privacy policy</a>
+                <a className="link link-hover">Cookie policy</a>
+            </nav>
         </footer>
     )
 }
