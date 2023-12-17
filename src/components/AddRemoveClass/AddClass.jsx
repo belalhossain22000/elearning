@@ -1,89 +1,46 @@
 import { useState } from "react";
 import { useGetUserByEmailQuery } from "../../redux/api/usersApi";
+import { useGetClassLinkQuery, useUpdateSingleClassMutation } from "../../redux/api/classApi";
 
 const AddClass = () => {
     const email = localStorage.getItem('email')
     const { data: user } = useGetUserByEmailQuery(email)
+    const { data: classes } = useGetClassLinkQuery()
+    const [classLink, setClassLink] = useState("");
 
-    const [classOne, setClassOne] = useState("");
-    const [classTwo, setClassTwo] = useState("");
+    const [updateSingleClass, { isLoading }] = useUpdateSingleClassMutation()
 
-    const handleClassOneChange = (e) => {
-        setClassOne(e.target.value);
-    };
+    // class one link add function
+    const handleClassLinkAddOne = async (id) => {
+        const updatedData = { classLink, id }
+        console.log(updatedData)
+        await updateSingleClass(updatedData)
+    }
 
-    const handleClassTwoChange = (e) => {
-        setClassTwo(e.target.value);
-    };
 
-    const addClassLinkOne = async () => {
-        try {
-            // Assuming you're using an API to add class link 1
-            const response = await fetch('/add-class-link-1', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ classLink: classOne }),
-            });
-
-            if (response.ok) {
-                console.log("Class Link 1 added successfully");
-            } else {
-                console.error("Failed to add Class Link 1");
-            }
-        } catch (error) {
-            console.error("Error while adding Class Link 1:", error);
-        }
-    };
-
-    const addClassLinkTwo = async () => {
-        try {
-            // Assuming you're using an API to add class link 2
-            const response = await fetch('/add-class-link-2', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ classLink: classTwo }),
-            });
-
-            if (response.ok) {
-                console.log("Class Link 2 added successfully");
-            } else {
-                console.error("Failed to add Class Link 2");
-            }
-        } catch (error) {
-            console.error("Error while adding Class Link 2:", error);
-        }
-    };
 
     return (
         <>
             {(user?.role === "Manager" || user?.role === "Admin") && (
-                <div className="flex flex-col justify-center md:flex-row gap-10 my-10">
-                    <div className="flex flex-col md:flex-row gap-5">
-                        <input
-                            onChange={handleClassOneChange}
-                            type="text"
-                            placeholder="Type here"
-                            className="input input-bordered w-full"
-                        />
-                        <button onClick={addClassLinkOne} className="btn btn-primary">
-                            Add Class Link-1
-                        </button>
-                    </div>
-                    <div className="flex flex-col md:flex-row gap-5">
-                        <input
-                            onChange={handleClassTwoChange}
-                            type="text"
-                            placeholder="Type here"
-                            className="input input-bordered w-full"
-                        />
-                        <button onClick={addClassLinkTwo} className="btn btn-primary">
-                            Add Class Link-2
-                        </button>
-                    </div>
+                <div className="flex flex-col justify-center md:flex-row gap-10 h-[70vh] md:h-[100vh] p-5">
+                    {classes?.classesLinks?.map((classItem) => (
+                        <div key={classItem?.id} className="flex flex-col md:flex-row gap-5">
+                            <input
+                                onChange={(e) => setClassLink(e.target.value)}
+                                defaultValue={classItem?.classLink}
+                                type="text"
+                                placeholder="Type here"
+                                className="input input-bordered w-full"
+                            />
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => handleClassLinkAddOne(classItem._id)}
+                            >
+                                {isLoading ? "Adding Class Link" : "Add Class Link-1"}
+                            </button>
+
+                        </div>
+                    ))}
                 </div>
             )}
         </>

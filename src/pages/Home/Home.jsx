@@ -1,4 +1,4 @@
-import AddClass from "../../components/AddRemoveClass/AddClass"
+
 import AgentDetails from "../../components/AgentDetails/AgentDetails"
 import ClassTime from "../../components/ClassTime/ClassTime"
 import ClassCard from "./ClassCard"
@@ -13,7 +13,6 @@ const Home = () => {
             </div>
             <div className="flex items-center justify-center gap-5">
                 <ClassCard />
-
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
 
@@ -32,12 +31,6 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                <AddClass />
-            </div>
-
-
-
         </div>
     )
 }

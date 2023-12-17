@@ -5,7 +5,7 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000",
   }),
-  tagTypes: ["products,carts,users"],
+  tagTypes: ["products,carts,users,classes"],
   // eslint-disable-next-line no-unused-vars
   endpoints: (builder) => ({}),
 });

@@ -14,6 +14,7 @@ import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import Error from "../components/Error/Error";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import AdminPrivetRoute from "./PrivetRoute/AdminPrivetRoute";
+import AddClass from "../components/AddRemoveClass/AddClass";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: '/update-profile',
         element: <UpdateProfile />
+      },
+      {
+        path: '/add-class-link',
+        element: <AddClass />
       },
       {
         path: '/dashboard',
