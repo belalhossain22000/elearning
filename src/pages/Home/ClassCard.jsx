@@ -1,31 +1,29 @@
-import { classData } from "../../data/data"
+import { Link } from "react-router-dom"
+import { MdAccessTimeFilled } from "react-icons/md"
+import { IoVideocamSharp } from "react-icons/io5"
 
-const ClassCard = () => {
+const ClassCard = ({ singleClass }) => {
+
+  const {
+    _id,
+    image,
+    className,
+    duration,
+    lectures,
+  } = singleClass || {}
   return (
-    <div className="overflow-x-auto ">
-      <table className="table">
-        <tbody className="grid md:grid-cols-2 grid-cols-1">
-          {/* row 1 */}
-          {
-            classData?.map((item, index) => (<tr key={index}>
-              <td >
-                <div className="flex items-center  gap-10 shadow-xl md:p-5 p-3 rounded-md md:w-full">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-20 h-20 md:w-32 md:h-32">
-                      <img className="object-cover" src={item?.image} />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-xl md:text-3xl">{item?.className}</div>
-                  </div>
-                </div>
-              </td>
-            </tr>))
-          }
-
-        </tbody>
-      </table>
-    </div>
+    <Link to={`course-details/${_id}`} className="p-8 border-green-200 border hover:border-2 hover:scale-105 transition duration-500 hover:border-green-500  rounded-lg cursor-pointer">
+      <div >
+        <img className="rounded-lg w-full object-cover " src={image} alt="" />
+      </div>
+      <div className="mt-5 space-y-3">
+        <p className="font-semibold text-2xl text-gray-700">{className}</p>
+        <div className="flex items-center justify-between ">
+          <p className="font-semibold text-xl flex items-center gap-3"> <MdAccessTimeFilled color="green" /> <span>{duration}</span></p>
+          <p className="font-semibold text-xl flex items-center gap-2"><IoVideocamSharp color="green" /><span>{lectures} Lectures</span></p>
+        </div>
+      </div>
+    </Link>
   )
 }
 

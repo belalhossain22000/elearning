@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Loading from "../../components/Loading/Loading"
-import { useGetUserByEmailQuery, useGetUsersQuery, useUpdateUserByEmailMutation } from "../../redux/api/usersApi"
-import { Link } from "react-router-dom"
+import { useDeleteUserMutation, useGetUserByEmailQuery, useGetUsersQuery, useUpdateUserByEmailMutation } from "../../redux/api/usersApi"
+import { Link, useNavigate } from "react-router-dom"
 
 const Dashboard = () => {
 
@@ -11,9 +11,9 @@ const Dashboard = () => {
 
     // filter user
     const filteredUsers = users?.filter(user =>
-        user.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchQuery.toLowerCase())
+        user?.firstName?.toLowerCase()?.includes(searchQuery?.toLowerCase()) ||
+        user?.lastName?.toLowerCase()?.includes(searchQuery?.toLowerCase()) ||
+        user?.email?.toLowerCase()?.includes(searchQuery?.toLowerCase())
     );
 
     // search button
@@ -42,8 +42,34 @@ const Dashboard = () => {
         }
 
     };
+    const navigate = useNavigate()
+
+    const [deleteUser, { isLoading: deleteLoading }] = useDeleteUserMutation()
+    const handleDeleteUser = async (id) => {
+        const ans = window.confirm("Are you sure you want to delete the user?");
+
+        try {
+            if (ans) {
+                await deleteUser(id);
+                alert("User deleted successfully");
+                navigate("/dashboard");
+            } else {
+                alert("User deletion canceled");
+                navigate("/dashboard");
+            }
+        } catch (error) {
+            alert(`Error deleting user: ${error.message}`);
+            navigate("/dashboard");
+        } finally {
+            navigate("/dashboard");
+        }
+    };
+
 
     if (isLoading) {
+        return <Loading />
+    }
+    if (deleteLoading) {
         return <Loading />
     }
 
@@ -74,9 +100,8 @@ const Dashboard = () => {
                                     <th className="border-b px-4 py-2 text-left">Email</th>
                                     <th className="border-b px-4 py-2 text-left">Unique Id</th>
                                     <th className="border-b px-4 py-2 text-left">Action</th>
-                                    <th className="border-b px-4 py-2 text-left">Update</th>
-                                    <th className="border-b px-4 py-2 text-left">Delete</th>
                                     <th className="border-b px-4 py-2 text-left">Details</th>
+                                    <th className="border-b px-4 py-2 text-left">Delete</th>
                                     {/* Add more column headers as needed */}
                                 </tr>
                             </thead>
@@ -107,16 +132,14 @@ const Dashboard = () => {
                                             </select>
                                         </td>
 
-
-                                        <td className="border-b px-4 py-2 text-green-600 font-bold">
-                                            <Link to="/">Update</Link>
-                                        </td>
-                                        <td className="border-b px-4 py-2 text-red-600 font-bold">
-                                            <Link to="/">Delete</Link>
-                                        </td>
                                         <td className="border-b px-4 py-2 text-blue-600 font-bold">
-                                            <Link to="/">Details</Link>
+                                            <Link to={`/`}>Details</Link>
                                         </td>
+
+                                        <td onClick={() => handleDeleteUser(user?._id)} className="border-b px-4 py-2 text-red-600 font-bold">
+                                            <Link to="/">{deleteLoading ? "Deleting" : "Delete"}</Link>
+                                        </td>
+
                                     </tr>
                                 ))}
                             </tbody>

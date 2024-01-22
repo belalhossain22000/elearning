@@ -266,7 +266,8 @@ const UpdateProfile = () => {
             Course Fee
           </label>
           <input
-            defaultValue={courseFee}
+            value={399}
+            readOnly
             type="text"
             id="courseFee"
             name="courseFee"

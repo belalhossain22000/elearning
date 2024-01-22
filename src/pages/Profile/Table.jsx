@@ -1,7 +1,7 @@
 
 // eslint-disable-next-line no-unused-vars
 const Table = ({ data, }) => {
-    const { country, phoneNumber, whatsAppNumber, language, email, firstName, lastName, FacebookLink, TrainerID, Division, City, dateOfBirth, gender, courseFee, role } = data || {}
+    const { country, phoneNumber, whatsAppNumber, language, email, firstName, lastName, FacebookLink, TrainerID, Division, City, dateOfBirth, gender, role } = data || {}
 
     return (
         <div className="mt-4 flex items-center justify-center">
@@ -80,7 +80,7 @@ const Table = ({ data, }) => {
                         <tr>
 
                             <td className=" text-base">Course Fee</td>
-                            <td className=" text-base">{courseFee}</td>
+                            <td className=" text-base">{399}</td>
 
                         </tr>
                         <tr>

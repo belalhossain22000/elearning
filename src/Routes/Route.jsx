@@ -15,6 +15,8 @@ import Error from "../components/Error/Error";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import AdminPrivetRoute from "./PrivetRoute/AdminPrivetRoute";
 import AddClass from "../components/AddRemoveClass/AddClass";
+import StudentDetails from "../pages/StudentDetails/StudentDetails";
+import ClassDetails from "../pages/Home/ClassDetails";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +32,10 @@ export const router = createBrowserRouter([
         path: '/profile',
         element: <Profile />
       },
+      {
+        path: '/profile/:email',
+        element: <StudentDetails />
+      },
 
       {
         path: '/update-profile',
@@ -38,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: '/add-class-link',
         element: <AddClass />
+      },
+      {
+        path: '/course-details/:id',
+        element: <ClassDetails />
       },
       {
         path: '/dashboard',

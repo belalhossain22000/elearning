@@ -11,9 +11,9 @@ const AddClass = () => {
     const [updateSingleClass, { isLoading }] = useUpdateSingleClassMutation()
 
     // class one link add function
-    const handleClassLinkAddOne = async (id) => {
+    const handleClassLinkAdd = async (id) => {
+
         const updatedData = { classLink, id }
-        console.log(updatedData)
         await updateSingleClass(updatedData)
     }
 
@@ -34,14 +34,14 @@ const AddClass = () => {
                             />
                             <button
                                 className="btn btn-primary"
-                                onClick={() => handleClassLinkAddOne(classItem._id)}
+                                onClick={() => handleClassLinkAdd(classItem._id)}
                             >
                                 {isLoading ? "Adding Class Link" : "Add Class Link-1"}
                             </button>
 
                         </div>
                     ))}
-                </div>
+                </div >
             )}
         </>
     );
