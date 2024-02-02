@@ -13,7 +13,7 @@ const Profile = () => {
     // console.log(data)
     const { firstName, lastName, uniqueId } = data || {}
     return (
-        <div className="container mx-auto mt-10">
+        <div className="container mx-auto mt-32">
             <div className="flex gap-6 md:gap-10 items-center justify-center">
                 <div className="avatar">
                     <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">

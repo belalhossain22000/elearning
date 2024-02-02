@@ -22,8 +22,8 @@ const Navbar = () => {
     return <Loading />
   }
   return (
-    <div className="bg-background pt-5 px-3 fixed top-0 left-0 right-0 z-50 ">
-      <div className="navbar container mx-auto border-[2px] h-[80px] rounded-md border-green-700 shadow-2xl ">
+    <div className="bg-background pt-5 px-3 fixed top-0 left-0 right-0 z-50 py-2">
+      <div className="navbar container mx-auto border-[2px] h-[80px] rounded-md border-green-700 shadow-2xl">
         <Link to="/" className="flex-1">
           <img className="w-[100px] object-cover" src="/Logo.svg" alt="" />
           <Link to='/' className="btn btn-ghost text-xl md:text-4xl md:block hidden">Digital Earning Platform BD</Link>
@@ -36,7 +36,7 @@ const Navbar = () => {
                 <FaBars className="text-2xl text-gray-700 hover:text-white " />
               </label>
             </div>
-            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content  rounded-box w-52  font-semibold bg-gray-500 text-white">
+            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content  rounded-box w-52  font-semibold bg-white text-gray-700">
               <li>
                 <Link to='/profile' className="justify-between">
                   Profile

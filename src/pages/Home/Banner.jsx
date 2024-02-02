@@ -18,16 +18,16 @@ const Banner = () => {
 
                 <div className="md:1/2 relative">
 
-                    <div className="bg-green-600 h-[150px] w-[150px] rounded-full flex flex-col items-center justify-center text-2xl absolute top-12 left-12">
+                    <div className="bg-green-600 h-[100px] w-[100px] md:h-[150px] md:w-[150px] rounded-full flex flex-col items-center justify-center md:text-2xl text-lg absolute top-12 left-12">
                         <IoBook color="white" />
                         <p className="font-bold text-white">5 + Course</p>
                         <p className="font-bold text-white">Active</p>
                     </div>
                     <img className="w-full object-cover" src="slidePerson.webp" alt="" />
 
-                    <div className="h-[150px] w-[150px] bg-white rounded-full flex flex-col justify-center items-center absolute top-12 right-0">
-                        <p className="flex items-center gap-5"><span className="font-bold text-4xl text-green-600">4.8 </span><span className="text-xl text-yellow-600"><FaRegStar /></span></p>
-                        <p className="text-lg text-gray-500">Ratings (56k)</p>
+                    <div className="md:h-[150px] md:w-[150px] h-[100px] w-[100px] bg-white rounded-full flex flex-col justify-center items-center absolute top-12 right-0 ">
+                        <p className="flex items-center gap-2 md:gap-5"><span className="font-bold text-lg md:text-4xl text-green-600">4.8 </span><span className="md:text-xl text-yellow-600"><FaRegStar /></span></p>
+                        <p className="md:text-lg text-gray-500">Ratings (56k)</p>
                     </div>
                 </div>
             </div>

@@ -30,7 +30,7 @@ const ClassDetails = () => {
   
 
     return (
-        <div className="container mx-auto my-10 flex md:flex-row flex-col  gap-10 px-3 spa ">
+        <div className="container mx-auto my-10 flex md:flex-row flex-col  gap-10 px-3 spa pt-[150px]">
             {/* left side */}
             <div className="md:w-1/2 w-full">
                 <div>

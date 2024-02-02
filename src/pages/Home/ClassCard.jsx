@@ -12,7 +12,7 @@ const ClassCard = ({ singleClass }) => {
     lectures,
   } = singleClass || {}
   return (
-    <Link to={`course-details/${_id}`} className="p-8 border-green-200 border hover:border-2 hover:scale-105 transition duration-500 hover:border-green-500  rounded-lg cursor-pointer">
+    <Link to={`course-details/${_id}`} className="p-8 shadow-2xl border-green-200 border hover:border-2 hover:scale-105 transition duration-500 hover:border-green-500  rounded-lg cursor-pointer">
       <div >
         <img className="rounded-lg w-full object-cover " src={image} alt="" />
       </div>
