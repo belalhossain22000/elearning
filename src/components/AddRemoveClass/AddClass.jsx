@@ -22,7 +22,7 @@ const AddClass = () => {
     return (
         <>
             {(user?.role === "Manager" || user?.role === "Admin") && (
-                <div className="flex flex-col justify-center md:flex-row gap-10 h-[70vh] md:h-[100vh] p-5">
+                <div className="flex mt-[150px] flex-col justify-center md:flex-row gap-10 h-[70vh] md:h-[100vh] p-5">
                     {classes?.classesLinks?.map((classItem) => (
                         <div key={classItem?.id} className="flex flex-col md:flex-row gap-5">
                             <input

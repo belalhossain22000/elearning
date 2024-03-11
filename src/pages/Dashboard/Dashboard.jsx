@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Loading from "../../components/Loading/Loading";
 import { useDeleteUserMutation, useGetUsersQuery, useUpdateUserByEmailMutation } from "../../redux/api/usersApi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import UserDetails from "../UserDetails/UserDetails";
 
 const Dashboard = () => {
     // eslint-disable-next-line no-unused-vars
@@ -9,6 +10,7 @@ const Dashboard = () => {
     const { data: users, isLoading } = useGetUsersQuery();
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedUserEmail, setSelectedUserEmail] = useState(null)
     const [itemsPerPage] = useState(50);
 
     // Filter users
@@ -66,6 +68,11 @@ const Dashboard = () => {
         }
     };
 
+    // show user details
+    const handleDetailsClick = (userEmail) => {
+        setSelectedUserEmail(userEmail);
+        document.getElementById('my_modal_1')?.showModal();
+    };
     // Pagination control
     // eslint-disable-next-line no-unused-vars
     const paginate = (pageNumber) => {
@@ -79,8 +86,10 @@ const Dashboard = () => {
         return <Loading />;
     }
 
+
+
     return (
-        <div className='max-w-[1280px] w-full mt-20 mx-auto overflow-x-scroll bg-slate-700 py-10 rounded-md'>
+        <div className='max-w-[1280px] w-full mt-20 mx-auto overflow-x-scroll bg-green-500 py-10 rounded-md'>
             <div className="mb-4 mx-auto flex items-center justify-center flex-col gap-2">
                 <label htmlFor="search" className="font-semibold text-xl pb-2 text-white">Search User Name or Email</label>
                 <input
@@ -125,14 +134,16 @@ const Dashboard = () => {
                                         </select>
                                     </td>
                                     <td className="border-b px-4 py-2 text-blue-600 font-bold">
-                                        <Link to={`/user/${user?._id}`}>Details</Link>
+                                        <button onClick={() => handleDetailsClick(user?.email)}>Details</button>
                                     </td>
-                                    <td onClick={() => handleDeleteUser(user?._id)} className="border-b px-4 py-2 text-red-600 font-bold">
+                                    <td onClick={() => handleDeleteUser(user?._id)} className="border-b px-4 py-2 text-red-600 font-bold cursor-pointer">
                                         <span>{deleteLoading ? "Deleting" : "Delete"}</span>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
+                        <UserDetails email={selectedUserEmail} />
+
                     </table>
                 </div>
             </div>
